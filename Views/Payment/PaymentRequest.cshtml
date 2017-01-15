@@ -1,0 +1,58 @@
+﻿@model List<NYCPaymentPortal.Models.PaymentRequest>
+@{
+    ViewBag.Title = "User";
+}
+<table>
+
+    <tr>
+        <td>
+            First Name: <input type="text" id="txtSearchFirstName" placeholder="Search First Name..." />
+            Last Name<input type="text" id="txtSearchLastName" placeholder="Search Last Name..." />
+            Code: <select id="ddlViewBy">
+                <option value="1">test1</option>
+                <option value="2" selected="selected">test2</option>
+                <option value="3">test3</option>
+            </select>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" id="btnSubmit" value="Submit" onclick="Search()" />
+    </tr>
+    <tr>
+        <td>
+
+            <div id="divPartialView">
+                @Html.Partial("~/Views/Shared/_GridPaymentRequest.cshtml", Model)
+            </div>
+
+        </td>
+    </tr>
+</table>
+
+
+
+<script type="text/javascript">
+
+
+    function Search() {
+        var searchFVal = $("#txtSearchFirstName").val();
+        var searchLVal = $("#txtSearchLastName").val();
+
+        var e = document.getElementById("ddlViewBy");
+        var strUser = e.options[e.selectedIndex].value;
+
+        $.ajax({
+
+            type: "POST",
+            url: '/Home/Search',
+            data: { searchFString: searchFVal, searchLString: searchLVal, searchVcodeString: strUser, },
+            dataType: 'html',
+            success: function (data) {
+                $('#divPartialView').html(data);
+
+            }
+
+        });
+
+    }
+</script>
+

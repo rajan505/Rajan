@@ -1,0 +1,283 @@
+﻿@model JQueryDataTables.Models.Invoice
+@{
+    ViewBag.Title = "AddPaymenentRequest";
+}
+
+<!-- panel-group -->
+<div class="panel-group" id="applicant-accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="more-less glyphicon glyphicon-plus"></i>
+                    <b>Invoice / Memo</b> Invoice #:       Invoice Amount :
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <fieldset>
+                    @using (Html.BeginForm("ProcessData", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Invoice #:</label>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(m => m.InvoiceNumber, new { @class = "form-control input-md", placeholder = "Invoice" })
+                                        @Html.ValidationMessageFor(m => m.InvoiceNumber)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Sub Invoice #:</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.SubInvoice, new { @class = "form-control input-md", placeholder = "Sub Invoice" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Invoice Amount:</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.InvoiceAmount, new { @class = "form-control input-md", placeholder = "Invoice Amount" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Invoice Date</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.InvoiceDate, new { @class = "form-control input-md date-picker", placeholder = "Invoice Date" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Invoice Submission Date:</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.InvoiceSubmissionDate, new { @class = "form-control input-md date-picker", placeholder = "Invoice Submission Date" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Service Period From:</label>
+                                    <div class="col-md-4">
+                                            @Html.TextBoxFor(m => m.ServicePeriodFrom, new { @class = "form-control input-md date-picker", placeholder = "Service Period From" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Service Period To:</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.ServicePeriodTo, new { @class = "form-control input-md date-picker", placeholder = "Service Period To" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Invoice Description:</label>
+                                    <div class="col-md-4">
+                                        @Html.TextAreaFor(m => m.InvoiceDescription, new { @class = "form-control input-md", placeholder = "Invoice Description" })
+                                    </div>
+                                </div>
+                                <!-- Select Basic -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="PaymentAddress">Payment Address:</label>
+                                    <div class="col-md-4">
+                                        <select id="PaymentAddress" name="PaymentAddress" class="form-control">
+                                            <option value="1">Option one</option>
+                                            <option value="2">Option two</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Attention To:</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.AttentionTo, new { @class = "form-control input-md", placeholder = "Attention To" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">PR #:</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.PRNumber, new { @class = "form-control input-md", placeholder = "PR" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">PR Status:</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.PRStatus, new { @class = "form-control input-md", placeholder = "PR Status" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input name="submit" type="submit" id="submit" class="btn btn-primary" value="Save" />
+                                        <input name="process" type="submit" id="process" class="btn btn-inverse" value="Process" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="more-less glyphicon glyphicon-plus"></i>
+                    <b>Purchase Order</b>  Vendor Name/Vendor Code:
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Vendor/Code</label>
+                                <div class="col-md-4">
+                                    @*<label class="col-md-8 control-label">ABC & Sales Co./VC00112931</label>*@
+                                    @Html.LabelFor(m => m.InvoiceNumber, new { @class = "col-md-4 control-label" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">PO Log Number</label>
+                                <div class="col-md-4">
+                                    @Html.LabelFor(m => m.InvoiceNumber, new { @class = "col-md-4 control-label" })
+                                    @*<label class="col-md-8 control-label"> DO1 857 2016162517    </label>*@
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">IITD-17-0085-N00    </label>
+                                <div class="col-md-4">
+                                    @Html.LabelFor(m => m.InvoiceNumber, new { @class = "col-md-4 control-label" })
+                                    @*<label class="col-md-8 control-label"> DO1 857 2016162517    </label>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <i class="more-less glyphicon glyphicon-plus"></i>
+                    <b>Documents</b>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <b>Document Category</b>
+                        <select id="selectbasic" name="selectbasic" class="form-control">
+                            <option value="Invoice">Invoice</option>
+                            <option value="Payment Authorization Memo">Payment Authorization Memo</option>
+                            <option value="Receiving Report">Receiving Report</option>
+                            <option value="Inspection Report">Inspection Report</option>
+                            <option value="Email">Email</option>
+                            <option value="Timesheets">Timesheets</option>
+                            <option value="Receipts">Receipts</option>
+                            <option value="Supporting Documetation">Supporting Documetation</option>
+                            <option value="Other ">Other </option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <b>Document File Name</b>
+                        <input id="filebutton" name="filebutton" class="input-file" type="file">
+                    </div>
+                    <div class="col-md-2">
+                        <b>Document Description</b>
+                        <input id="PRStatus" name="PRStatus" type="text" class="form-control input-md">
+                    </div>
+                    <div class="col-md-2">
+                        <b>Date Uploaded</b>
+
+                    </div>
+                    <div class="col-md-2">
+                        <b>Date Modified</b>
+
+                    </div>
+                    <div class="col-md-2">
+                        <b>Date Uploaded</b>
+                        <button id="btnDocDelete" name="btnDocDelete" class="btn btn-primary">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <h2>header</h2>
+        <p>
+            one of those is going to take up two of the columns which means that because there's three of them, so two times three is six, so it's going to take up six of the 12 columns, it's got a little bit of gutter
+        </p>
+    </div>
+    <div class="col-md-3">
+        <h2>header</h2>
+        <p>I'll save this and you'll see that now it's adjusting to that three column format, until we get to a different breakpoint, right around here. If we wanted to go and make this always 12 columns, we could include this xs size. So let's go ahead and modify these, and we'll make them xs. That means that no matter what size I make this layout these are always going to take up three columns, and they're sort of going to start scrunching up because this is a single word it's actually going over our gutters here.</p>
+    </div>
+    <div class="col-md-3">
+        <h2>header</h2>
+        <p>
+            one of those is going to take up two of the columns which means that because there's three of them, so two times three is six, so it's going to take up six of the 12 columns, it's got a little bit of gutter
+        </p>
+    </div>
+    <div class="col-md-3">
+        <h2>header</h2>
+        <p>I'll save this and you'll see that now it's adjusting to that three column format, until we get to a different breakpoint, right around here. If we wanted to go and make this always 12 columns, we could include this xs size. So let's go ahead and modify these, and we'll make them xs. That means that no matter what size I make this layout these are always going to take up three columns, and they're sort of going to start scrunching up because this is a single word it's actually going over our gutters here.</p>
+    </div>
+</div>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script>
+    /*******************************
+* ACCORDION WITH TOGGLE ICONS
+*******************************/
+    function toggleIcon(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find(".more-less")
+            .toggleClass('glyphicon-plus glyphicon-minus');
+    }
+    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel-group').on('shown.bs.collapse', toggleIcon);
+
+
+
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        //$('.datepicker').datepicker()
+        $("#InvoiceDate").datepicker({ format: 'mm/dd/yyyy', autoclose: true, todayBtn: 'linked' })
+    })
+
+    // Date Range script
+    var nowTemp = new Date();
+    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+    var checkin = $('#ServicePeriodFrom').datepicker({
+        onRender: function (date) {
+            return date.valueOf() < now.valueOf() ? 'disabled' : '';
+        }
+    }).on('changeDate', function (ev) {
+        if (ev.date.valueOf() > checkout.date.valueOf()) {
+            var newDate = new Date(ev.date)
+            newDate.setDate(newDate.getDate() + 1);
+            checkout.setValue(newDate);
+        }
+        checkin.hide();
+        $('#ServicePeriodTo')[0].focus();
+    }).data('datepicker');
+    var checkout = $('#ServicePeriodTo').datepicker({
+        onRender: function (date) {
+            return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+        }
+    }).on('changeDate', function (ev) {
+        checkout.hide();
+    }).data('datepicker');
+
+</script>
+

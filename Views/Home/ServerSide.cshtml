@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Server Side Master Table";
+    Layout = "~/Views/Home/MasterDetailsLayoutPage.cshtml";
+}
+
+
+@section onReady{
+
+        var oTable;
+        $('#companies tbody td img').click(function () {
+            var nTr = this.parentNode.parentNode;
+            if (this.src.match('details_close')) {
+                /* This row is already open - close it */
+                this.src = "/Content/images/details_open.png";
+                oTable.fnClose(nTr);
+            }
+            else {
+                /* Open this row */
+                this.src = "/Content/images/details_close.png";
+                var companyid = $(this).attr("rel");
+                $.get("CompanyEmployees?CompanyID=" + companyid, function (employees) {
+                    oTable.fnOpen(nTr, employees, 'details');
+                });
+            }
+        });
+
+        /* Initialize table and make first column non-sortable*/
+        oTable = $('#companies').dataTable({
+            "bJQueryUI": true,
+            "aoColumns": [
+			                    { "bSortable": false, "bSearchable": false },
+			                    null,
+			                    null,
+			                    null
+		                ]
+        });
+
+}
+
+<div id="demo">
+<table id="companies" class="display">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Company Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Town
+            </th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td><img src="/Content/images/details_open.png" alt="expand/collapse" rel="@item.ID"/></td>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.Address
+        </td>
+        <td>
+            @item.Town
+        </td>
+    </tr>
+}
+
+</table>
+
+</div>

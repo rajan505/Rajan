@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PaymentRequest">
+          <Key>
+            <PropertyRef Name="PaymentReqId" />
+          </Key>
+          <Property Name="Vendor/Code" Type="float" />
+          <Property Name="PaymentReqId" Type="float" Nullable="false" />
+          <Property Name="PR Status" Type="float" />
+          <Property Name="Vendor Invoice #" Type="float" />
+          <Property Name="Invoice Date" Type="datetime" />
+          <Property Name="Invoice Submitted Date" Type="datetime" />
+          <Property Name="Service Period" Type="nvarchar" MaxLength="255" />
+          <Property Name="Invoice Amount" Type="float" />
+        </EntityType>
+        <EntityType Name="PRNewRequest">
+          <Key>
+            <PropertyRef Name="PaymentReqId" />
+          </Key>
+          <Property Name="PaymentReqId" Type="float" Nullable="false" />
+          <Property Name="Vendor/Code" Type="float" />
+          <Property Name="FMS Registration" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContractPIN" Type="nvarchar" MaxLength="255" />
+          <Property Name="MHYNumberId" Type="float" />
+          <Property Name="ServiceFromDate" Type="datetime" />
+          <Property Name="ServiceToDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PRSearch">
+          <Key>
+            <PropertyRef Name="PaymentReqId" />
+          </Key>
+          <Property Name="PaymentReqId" Type="float" Nullable="false" />
+          <Property Name="Vendor/Code" Type="float" />
+          <Property Name="PaymentReqId1" Type="float" />
+          <Property Name="PR Status" Type="float" />
+          <Property Name="FMS Registration" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContractPIN" Type="nvarchar" MaxLength="255" />
+          <Property Name="Vendor Invoice #" Type="float" />
+          <Property Name="Invoice Amount" Type="float" />
+          <Property Name="Invoice Date" Type="datetime" />
+          <Property Name="Invoice Submission Date" Type="datetime" />
+          <Property Name="ServiceFromDate" Type="datetime" />
+          <Property Name="MHYNumberId" Type="float" />
+        </EntityType>
+        <EntityContainer Name="NorthwindModelStoreContainer">
+          <EntitySet Name="PaymentRequest" EntityType="Self.PaymentRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRNewRequest" EntityType="Self.PRNewRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRSearch" EntityType="Self.PRSearch" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NorthwindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="az">
+          <Key>
+            <PropertyRef Name="PaymentReqId" />
+          </Key>
+          <Property Name="Vendor_Code" Type="Double" />
+          <Property Name="PaymentReqId" Type="Double" Nullable="false" />
+          <Property Name="PR_Status" Type="Double" />
+          <Property Name="Vendor_Invoice__" Type="Double" />
+          <Property Name="Invoice_Date" Type="DateTime" Precision="3" />
+          <Property Name="Invoice_Submitted_Date" Type="DateTime" Precision="3" />
+          <Property Name="Service_Period" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Invoice_Amount" Type="Double" />
+        </EntityType>
+        <EntityType Name="PRNewRequest">
+          <Key>
+            <PropertyRef Name="PaymentReqId" />
+          </Key>
+          <Property Name="PaymentReqId" Type="Double" Nullable="false" />
+          <Property Name="Vendor_Code" Type="Double" />
+          <Property Name="FMS_Registration" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContractPIN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MHYNumberId" Type="Double" />
+          <Property Name="ServiceFromDate" Type="DateTime" Precision="3" />
+          <Property Name="ServiceToDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PRSearch">
+          <Key>
+            <PropertyRef Name="PaymentReqId" />
+          </Key>
+          <Property Name="PaymentReqId" Type="Double" Nullable="false" />
+          <Property Name="Vendor_Code" Type="Double" />
+          <Property Name="PaymentReqId1" Type="Double" />
+          <Property Name="PR_Status" Type="Double" />
+          <Property Name="FMS_Registration" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContractPIN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor_Invoice__" Type="Double" />
+          <Property Name="Invoice_Amount" Type="Double" />
+          <Property Name="Invoice_Date" Type="DateTime" Precision="3" />
+          <Property Name="Invoice_Submission_Date" Type="DateTime" Precision="3" />
+          <Property Name="ServiceFromDate" Type="DateTime" Precision="3" />
+          <Property Name="MHYNumberId" Type="Double" />
+        </EntityType>
+        <EntityContainer Name="NorthwindEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="azs" EntityType="NorthwindModel.az" />
+          <EntitySet Name="PRNewRequests" EntityType="Self.PRNewRequest" />
+          <EntitySet Name="PRSearches" EntityType="Self.PRSearch" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer" CdmEntityContainer="NorthwindEntities">
+          <EntitySetMapping Name="azs">
+            <EntityTypeMapping TypeName="NorthwindModel.az">
+              <MappingFragment StoreEntitySet="PaymentRequest">
+                <ScalarProperty Name="Vendor_Code" ColumnName="Vendor/Code" />
+                <ScalarProperty Name="PaymentReqId" ColumnName="PaymentReqId" />
+                <ScalarProperty Name="PR_Status" ColumnName="PR Status" />
+                <ScalarProperty Name="Vendor_Invoice__" ColumnName="Vendor Invoice #" />
+                <ScalarProperty Name="Invoice_Date" ColumnName="Invoice Date" />
+                <ScalarProperty Name="Invoice_Submitted_Date" ColumnName="Invoice Submitted Date" />
+                <ScalarProperty Name="Service_Period" ColumnName="Service Period" />
+                <ScalarProperty Name="Invoice_Amount" ColumnName="Invoice Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRNewRequests">
+            <EntityTypeMapping TypeName="NorthwindModel.PRNewRequest">
+              <MappingFragment StoreEntitySet="PRNewRequest">
+                <ScalarProperty Name="PaymentReqId" ColumnName="PaymentReqId" />
+                <ScalarProperty Name="Vendor_Code" ColumnName="Vendor/Code" />
+                <ScalarProperty Name="FMS_Registration" ColumnName="FMS Registration" />
+                <ScalarProperty Name="ContractPIN" ColumnName="ContractPIN" />
+                <ScalarProperty Name="MHYNumberId" ColumnName="MHYNumberId" />
+                <ScalarProperty Name="ServiceFromDate" ColumnName="ServiceFromDate" />
+                <ScalarProperty Name="ServiceToDate" ColumnName="ServiceToDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRSearches">
+            <EntityTypeMapping TypeName="NorthwindModel.PRSearch">
+              <MappingFragment StoreEntitySet="PRSearch">
+                <ScalarProperty Name="PaymentReqId" ColumnName="PaymentReqId" />
+                <ScalarProperty Name="Vendor_Code" ColumnName="Vendor/Code" />
+                <ScalarProperty Name="PaymentReqId1" ColumnName="PaymentReqId1" />
+                <ScalarProperty Name="PR_Status" ColumnName="PR Status" />
+                <ScalarProperty Name="FMS_Registration" ColumnName="FMS Registration" />
+                <ScalarProperty Name="ContractPIN" ColumnName="ContractPIN" />
+                <ScalarProperty Name="Vendor_Invoice__" ColumnName="Vendor Invoice #" />
+                <ScalarProperty Name="Invoice_Amount" ColumnName="Invoice Amount" />
+                <ScalarProperty Name="Invoice_Date" ColumnName="Invoice Date" />
+                <ScalarProperty Name="Invoice_Submission_Date" ColumnName="Invoice Submission Date" />
+                <ScalarProperty Name="ServiceFromDate" ColumnName="ServiceFromDate" />
+                <ScalarProperty Name="MHYNumberId" ColumnName="MHYNumberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

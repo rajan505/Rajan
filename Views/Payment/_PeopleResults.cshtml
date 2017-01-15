@@ -1,0 +1,15 @@
+﻿
+@model IEnumerable<JQueryDataTables.Models.Person>
+
+@{
+    var grid = new WebGrid(Model, defaultSort: "ID", rowsPerPage: 20, ajaxUpdateContainerId: "searchResults");
+    @grid.GetHtml(mode: WebGridPagerModes.All,
+    htmlAttributes: new { id = "searchResults" },
+    columns: grid.Columns(
+                grid.Column(columnName: "LastName"),
+                grid.Column(columnName: "FirstName"),
+                grid.Column(format: (item) => Html.ActionLink("Edit", "Edit", new { id = item.ID })),
+                grid.Column(format: (item) => Html.ActionLink("Details", "Details", new { id = item.ID })),
+                grid.Column(format: (item) => Html.ActionLink("Delete", "Delete", new { id = item.ID }))
+    ));
+}

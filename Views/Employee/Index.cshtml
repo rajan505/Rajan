@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Employees";
+}
+
+<div class="table-responsive">
+    <table style="width: 100%" id="tblEmployee" class="table table-hover table-condensed" data-page-length='10' data-order='[[ 1, "asc" ]]'>
+        <thead>
+            <tr>
+                <th>Vendor/Code</th>
+                <th>PR#</th>
+                <th>PR Status</th>
+                <th>FMS Registration</th>
+                <th>ConTrak PIN/ PO Log Numbe</th>
+                <th>Vendor Invoice #</th>
+                <th>Invoice Date</th>
+                <th>Invoice Submission Date</th>
+                <th>Service Period</th>
+                <th>MHY Contract #</th>
+                <th>Cancel</th>
+
+            </tr>
+        </thead>
+
+    </table>
+</div>
+<div>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#tblEmployee').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'LETTER'
+                    }
+                ],
+                "searching": true,
+                "ordering": true,
+                "pagingType": "simple_numbers",
+                "info": true,
+                "ajax": "http://t2ua1282fc3.doitt.nycnet/DOHPaymentPortal/Employee/getEmployees",
+                "columns": [
+                    { "data": "CompanyName" },
+                    { "data": "ContactName" },
+                    { "data": "ContactTitle" },
+                    { "data": "City" },
+                    { "data": "Country" },
+                    { "data": "Phone" },
+                    { "data": "Fax" },
+                    { "data": "Country" },
+                    { "data": "Country" }
+                ]
+
+
+            });
+          
+            //$("div.toolbar").html('<b>Payment Portal Serach</b>');
+        });
+      
+    </script>
+</div> 

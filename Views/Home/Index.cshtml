@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <p>
+                    PATS Maintenance Today at 12:00pm<br />
+                    PATS will be unavailable today between 12:00pm - 1:00pm for system maintenance and upgrades. Please plan accordingly prior to the downtime. For PATS Application related questions, please feel free to contact the DOHMH/IT Service Request Center
+                    <br /><br /><br />
+                    Scheduled Maintenance for the FMS Application portal & FISA password Self Service on 3/4 - 3/6<br />
+                    Please be advised that due to a major system upgrade, the FMS Application portal will not be available on Friday March 4, 2016 and will remain offline for the entire weekend.
+                    the scheduled downtime, the FISA Password Self-Service utility tool will not be available for self-service password resets on the
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h3>@Html.ActionLink("USER", "Index", "Home")</h3>
+                <p>View User/Administrator<br />Contact Information; User<br />Roles and Status </p>
+                <br />
+                <h3>@Html.ActionLink("ADMIN", "Index", "Home")</h3>
+                <p>View Administrator/Vendor<br />Information; Maintain<br />Users Statuses and Roles </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3>@Html.ActionLink("SEARCH", "Index", "Home")</h3>
+                <p>Search for Pending<br />Payment Requests,<br />Invoices</p>
+            </div>
+            <div class="col-md-3">
+                <h3>@Html.ActionLink("ADD REQUEST", "Index", "Home")</h3>
+                <p>
+                    Create / View<br />Payment Requests and<br />Contracts
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h3>@Html.ActionLink("REPORTS", "Index", "Home")</h3>
+                <p>Payment Requests Details</p>
+            </div>
+            <div class="col-md-3">
+                <h3>@Html.ActionLink("HELP?", "Index", "Home")</h3>
+                <p>User Guide for<br />DOHMH Vendors</p>
+            </div>
+        </div>
+    </div>
