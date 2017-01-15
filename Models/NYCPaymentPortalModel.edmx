@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PaymentRequest">
           <Key>
             <PropertyRef Name="PaymentReqId" />
@@ -52,24 +52,10 @@
           <EntitySet Name="PRNewRequest" EntityType="Self.PRNewRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRSearch" EntityType="Self.PRSearch" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NorthwindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="az">
-          <Key>
-            <PropertyRef Name="PaymentReqId" />
-          </Key>
-          <Property Name="Vendor_Code" Type="Double" />
-          <Property Name="PaymentReqId" Type="Double" Nullable="false" />
-          <Property Name="PR_Status" Type="Double" />
-          <Property Name="Vendor_Invoice__" Type="Double" />
-          <Property Name="Invoice_Date" Type="DateTime" Precision="3" />
-          <Property Name="Invoice_Submitted_Date" Type="DateTime" Precision="3" />
-          <Property Name="Service_Period" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Invoice_Amount" Type="Double" />
-        </EntityType>
         <EntityType Name="PRNewRequest">
           <Key>
             <PropertyRef Name="PaymentReqId" />
@@ -100,30 +86,29 @@
           <Property Name="MHYNumberId" Type="Double" />
         </EntityType>
         <EntityContainer Name="NorthwindEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="azs" EntityType="NorthwindModel.az" />
           <EntitySet Name="PRNewRequests" EntityType="Self.PRNewRequest" />
           <EntitySet Name="PRSearches" EntityType="Self.PRSearch" />
+          <EntitySet Name="PaymentRequests" EntityType="NorthwindModel.PaymentRequest" />
         </EntityContainer>
+        <EntityType Name="PaymentRequest">
+          <Key>
+            <PropertyRef Name="PaymentReqId" />
+          </Key>
+          <Property Name="Vendor_Code" Type="Double" />
+          <Property Name="PaymentReqId" Type="Double" Nullable="false" />
+          <Property Name="PR_Status" Type="Double" />
+          <Property Name="Vendor_Invoice__" Type="Double" />
+          <Property Name="Invoice_Date" Type="DateTime" Precision="3" />
+          <Property Name="Invoice_Submitted_Date" Type="DateTime" Precision="3" />
+          <Property Name="Service_Period" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Invoice_Amount" Type="Double" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer" CdmEntityContainer="NorthwindEntities">
-          <EntitySetMapping Name="azs">
-            <EntityTypeMapping TypeName="NorthwindModel.az">
-              <MappingFragment StoreEntitySet="PaymentRequest">
-                <ScalarProperty Name="Vendor_Code" ColumnName="Vendor/Code" />
-                <ScalarProperty Name="PaymentReqId" ColumnName="PaymentReqId" />
-                <ScalarProperty Name="PR_Status" ColumnName="PR Status" />
-                <ScalarProperty Name="Vendor_Invoice__" ColumnName="Vendor Invoice #" />
-                <ScalarProperty Name="Invoice_Date" ColumnName="Invoice Date" />
-                <ScalarProperty Name="Invoice_Submitted_Date" ColumnName="Invoice Submitted Date" />
-                <ScalarProperty Name="Service_Period" ColumnName="Service Period" />
-                <ScalarProperty Name="Invoice_Amount" ColumnName="Invoice Amount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PRNewRequests">
             <EntityTypeMapping TypeName="NorthwindModel.PRNewRequest">
               <MappingFragment StoreEntitySet="PRNewRequest">
@@ -152,6 +137,20 @@
                 <ScalarProperty Name="Invoice_Submission_Date" ColumnName="Invoice Submission Date" />
                 <ScalarProperty Name="ServiceFromDate" ColumnName="ServiceFromDate" />
                 <ScalarProperty Name="MHYNumberId" ColumnName="MHYNumberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentRequests">
+            <EntityTypeMapping TypeName="NorthwindModel.PaymentRequest">
+              <MappingFragment StoreEntitySet="PaymentRequest">
+                <ScalarProperty Name="Invoice_Amount" ColumnName="Invoice Amount" />
+                <ScalarProperty Name="Service_Period" ColumnName="Service Period" />
+                <ScalarProperty Name="Invoice_Submitted_Date" ColumnName="Invoice Submitted Date" />
+                <ScalarProperty Name="Invoice_Date" ColumnName="Invoice Date" />
+                <ScalarProperty Name="Vendor_Invoice__" ColumnName="Vendor Invoice #" />
+                <ScalarProperty Name="PR_Status" ColumnName="PR Status" />
+                <ScalarProperty Name="PaymentReqId" ColumnName="PaymentReqId" />
+                <ScalarProperty Name="Vendor_Code" ColumnName="Vendor/Code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
