@@ -1,19 +1,109 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>NYC Payment Portal</title>
-    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 
+    <title>NYC Payment Portal</title>
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+
+
+    <!--DOHMH Branding Addition START-->
+    <link href="~/Branding/css/global.css?v=2.0" rel="stylesheet" />
+    <link href="~/Branding/css/header-agencies.css?v=2.0" rel="stylesheet" />
+    <link href="~/Branding/css/inside.css?v=2.0" rel="stylesheet" />
+
+    <script src="~/Branding/bootstrapJquery/jquery1.12.2.min.js?v=2.0"></script>
+
+    <!--needed below if you are using navigation in your application-->
+    <script src="~/Branding/js/modernizr-2.6.2.min.js?v=2.0"></script>
+    <script src="~/Branding/js/utils.js?v=2.0"></script>
+    <script src="~/Branding/js/class.js?v=2.0"></script>
+    <script src="~/Branding/js/NYC.MainNav.js?v=2.0"></script>
+    <script src="~/Branding/js/NYC.MobileNav.js?v=2.0"></script>
+    <script src="~/Branding/js/NYC.Global.js?v=2.0"></script>
+    <script src="~/Branding/js/jquery.colorbox-min.js?v=2.0"></script>
+    <!--navigation end-->
+    <!--below two scripts used for google translate/languages-->
+    <script type="text/javascript">
+        function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element'); }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!--DOHMH Branding Addtion END-->
 </head>
 <body>
-    <div class="container">
-        <h3> NYC Payment Portal</h3>
-        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="main-header" id="top">
+            <div class="agency-header">
+                <div class="upper-header-black">
+                    <div class="NYCcontainer">
+                        <span class="upper-header-left">
+                            <a class="NYClinks" href="http://www1.nyc.gov">
+                                <img src="~/Branding/images/nyc_white.png" alt="NYC" class="small-nyc-logo NYCimg">
+                            </a>
+                            <img class="NYCimg" src="~/Branding/images/upper-header-divider.gif" alt="">
+                            <span class="upper-header-black-title">Health</span>
+                        </span>
+                        <span class="upper-header-padding"></span><span class="upper-header-right">
+                            <span class="upper-header-three-one-one"><a class="NYClinks" href="/311/index.page">311</a></span>
+                            <img class="NYCimg" src="~/Branding/images/upper-header-divider.gif">
+                            <span class="upper-header-search"><a class="NYClinks" href="./home/search/index.page">Search all NYC.gov websites</a></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div role="banner" id="top" class="main-header">
+                <div class="block">
+                    <div class="header-top" id="DOHBrandHeader">
+                        <div class="NYCcontainer">
+                            <a href="#" class="toggle-mobile-side-nav visible-phone" id="nav-open-btn">Menu</a><span class="welcome-text hidden-phone agency-header">Promoting and Protecting the City's Health</span>
+                            <div class="agency-logo-wrapper">
+                                <a class="NYClinks" href="/site/doh/index.page"><img class="agency-logo NYCimg" src="~/Branding/images/logo.png" alt="NYC Health"></a>
+                            </div>
+                            <div class="hidden-phone" id="header-links">
+                                <div class="language-gif hidden-phone">
+                                    <img class="NYCimg" src="~/Branding/images/language.gif" alt="Language">
+                                </div>
+                                <div class="language-selector hidden-phone">
+
+                                    <div id="google_translate_element"></div>
+                                </div>
+                                <a class="text-size hidden-phone" href="http://www1.nyc.gov/home/text-size.page">Text-Size</a>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div role="banner" id="top" class="main-header">
+                        <div role="banner" id="top" class="main-header">
+                            <div class="block">
+                                <div class="NYCcontainer nav-outer" id="dohmh_navigation">
+                                    <nav role="navigation" class="hidden-phone" id="nav">
+                                        <div class="block">
+                                            <h2 class="block-title visible-phone">Promoting and Protecting the City's Health</h2>
+                                            <ul>
+                                                <li>
+                                                    <a>Home</a>
+                                                </li>
+                                                <li>
+                                                    <a>About</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-default navbar-static-top main-header" role="navigation">
+            @*<div class="navbar navbar-inverse navbar-fixed-top">*@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -25,48 +115,96 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav nav-pills">
-                        <li>@Html.ActionLink("HOME", "Index", "Home")</li>
-                        <li>@Html.ActionLink("SEARCH", "Index", "Employee")</li>
-                        <li>@Html.ActionLink("ADD REQUEST", "AddRequest", "Employee")</li>
-                        <li>@Html.ActionLink("REPORTS", "Index", "Student")</li>
-                        <li>@Html.ActionLink("HELP?", "Index", "Payment")</li>
-
+                    <ul class="nav nav-pills glyphicon-bold">
+                        <li>@Html.ActionLink("HOME", "Index", "Payment")</li>
+                        <li>@Html.ActionLink("SEARCH", "PaymentRequest", "Payment")</li>
+                        <li>@Html.ActionLink("ADD REQUEST", "PaymentRequestView", "Payment")</li>
+                        <li>@Html.ActionLink("REPORTS", "PaymentRequestView", "Payment")</li>
+                        <li class="pull-right">@Html.ActionLink("USER", "Users", "Payment")</li>
+                        <li class="pull-right">@Html.ActionLink("ADMIN", "Admin", "Payment")</li>
                     </ul>
+                    @using (Html.BeginForm("PaymentRequest", "Payment", FormMethod.Get))
+                    {
+                        <div class="form-group has-feedback pull-right">
+                            <input type="text" class="form-control" id="inputSuccess2" placeholder="PR# Quick Search" />
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    }
+                    <div class="form-group has-feedback pull-left">
+                        <h4 class=""> NYC Payment Portal</h4>
+                    </div>
                 </div>
             </div>
         </nav>
-        <div class="bg-black">
-            <div class="cd-breadcrumb">
-                @Html.MvcSiteMap().SiteMapPath()
-            </div>
-        </div>
-        <div style="width:auto" class="container body-content pull-left">
+        
+        <div class="container body-content ">
             @RenderBody()
         </div>
-        @*<div class="row">
-            <hr />
-            <footer class="text-center">
-                <b>NYC Health Payment Portal 2016</b>
-            </footer>
-        </div>*@
+            @*<footer>
+            </footer>*@
+            <div class="container-fluid">
+                <div id=" container-fluid footer">
+                    <div class="ls-row" id="ls-row-1-col-1-row-3">
+                        <div class="ls-fxr" id="ls-gen72447103-ls-fxr">
+                            <div class="ls-area" id="ls-row-1-col-1-row-3-area-1">
+                                <div class="ls-area-body" id="ls-gen72447104-ls-area-body">
+                                    <div class="ls-cmp-wrap ls-1st" id="w1456871087033">
+                                        <div class="iw_component" id="1456871087033">
+                                            <div id="space"></div>
+                                            <footer>
+                                                <div class="NYCcontainer">
+                                                    <div class="span9 footer-links">
+                                                        <a href="/nyc-resources/agencies.page">Directory of City Agencies </a>
+                                                        <a href="/home/contact-us.page">Contact NYC Government </a>
+                                                        <a href="https://a127-ess.nyc.gov">City Employees </a>
+                                                        <a href="http://www.nyc.gov/notifynyc">Notify NYC </a>
+                                                        <a href="http://a856-citystore.nyc.gov/">CityStore </a>
+                                                        <a href="/connect/social-media.page">Stay Connected </a>
+                                                        <a href="/connect/applications.page">NYC Mobile Apps  </a>
+                                                        <a href="/nyc-resources/nyc-maps.page">Maps </a>
+                                                        <a href="/nyc-resources/resident-toolkit.page">Resident Toolkit</a>
+                                                    </div>
+                                                    <div class="span3">
+                                                        <span class="logo-nyc">NYC</span>
+                                                        <div class="copyright">
+                                                            <p>City of New York. 2016 All Rights Reserved,</p>
+                                                            <p>NYC is a trademark and service mark of the City of New York</p>
+                                                            <p>
+                                                                <a class="NYClinks" target="_blank" href="/home/privacy-policy.page" title="Privicy">Privacy Policy</a>.
+                                                                <a class="NYClinks" target="_blank" href="/home/terms-of-use.page" title="TOU">Terms of Use</a>.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
     </div>
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+
+    @*postback with accordian works if we comment "~/bundles/jquery" and "scripts", required: false*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
 
-       
+    @*To avoid this script error for Accordian
+        jQuery UI: TypeError: $(…).accordion is not a function*@
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>        
 
-        <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
-        <script src='https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js'></script>
+    @* added for CRUD datatable
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Scripts/jquery.dataTables.editable.js"></script>
 
-        <script src='//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js'></script>
-        <script src='//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js'></script>
-        <script src='//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
+         added for makeEditable()
+        <script src="~/Scripts/jquery.jeditable.js"></script>*@
 
 </body>
 </html>

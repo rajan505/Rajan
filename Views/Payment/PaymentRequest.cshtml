@@ -1,58 +1,254 @@
 ﻿@model List<NYCPaymentPortal.Models.PaymentRequest>
+<link href="~/Css/ResponsivePaymentRequestGrid.css" rel="stylesheet" />
+
 @{
-    ViewBag.Title = "User";
+    //var grid = new WebGrid(Model, canPage: true, rowsPerPage: 5, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+
+    var grid = new WebGrid(canPage: true, rowsPerPage: 5, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
 }
-<table>
-
-    <tr>
-        <td>
-            First Name: <input type="text" id="txtSearchFirstName" placeholder="Search First Name..." />
-            Last Name<input type="text" id="txtSearchLastName" placeholder="Search Last Name..." />
-            Code: <select id="ddlViewBy">
-                <option value="1">test1</option>
-                <option value="2" selected="selected">test2</option>
-                <option value="3">test3</option>
-            </select>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button" id="btnSubmit" value="Submit" onclick="Search()" />
-    </tr>
-    <tr>
-        <td>
-
-            <div id="divPartialView">
-                @Html.Partial("~/Views/Shared/_GridPaymentRequest.cshtml", Model)
+<div class="container panel panel-default">
+    @using (Html.BeginForm("PaymentRequest", "Payment", FormMethod.Get))
+    {
+        <div class="row col-xs-12 table-condensed">
+            <div class="col-xs-6 form-group">
+                <label for="PR">PR #</label>
+                <input type="text" class="form-control" id="txtPRNumber" placeholder="PR Number" />
             </div>
+            <div class="col-xs-6 form-group">
+                <label for="Vendor">Vendor Invoice #</label>
+                <input type="text" class="form-control" id="txtVendorInvoice" placeholder="Vendor Invoice" />
+            </div>
+            <div class="col-xs-6 form-group">
+                <label for="exampleSelect1">Vendor/Code</label>
+                <select class="form-control" id="ddlVendorCode">
+                    <option>ALL</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label for="exampleSelect1">PR Status</label>
+                <select class="form-control" id="ddlPRStatus">
+                    <option>ALL</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label for="exampleInputEmail1">FMS Registration</label>
 
-        </td>
-    </tr>
-</table>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="text" class="form-control" id="txtFMSContractType" width="15" placeholder="Contract Type" />
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="text" class="form-control" id="txtFMSAgencyCode" width="15" placeholder="Agency Code" />
+
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="text" class="form-control" id="txtFMSDocID" width="20" placeholder="Doc ID" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label for="Vendor">MHY Contract #</label>
+                <input type="text" class="form-control" id="txtMHYContract" placeholder="MHY Contract" />
+
+            </div>
+            <div class="col-xs-6 form-group">
+            </div>
+            <div class="col-xs-6 form-group">
+                <button type="submit" class="btn btn-primary" onclick="Search()">Apply</button>
+                <button type="submit" id="GridSearchReset" class="btn btn-default">Reset</button>
+            </div>
+        </div>
+
+        <div class="row col-xs-6">
+            <div class="col-xs-4 col-sm-4">
+                <label for="Rows" class="input-small" style="width:auto">Rows Per Page </label>
+            </div>
+            <div class="col-xs-4 col-sm-4">
+                <select name="GridpageSize" class="input-small form-control" style="width:auto" onchange="this.form.submit();">
+                    <option value="Select">Select</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                </select>
+            </div>
+        </div>
+        @*<button type="submit" value="Search" class="btn btn-success">Search</button>*@
+    }
+    <div class="row">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                @grid.Table(
+                         tableStyle: "col-md-12 table-bordered table-responsive table-condensed",
+
+                columns: grid.Columns(
+                grid.Column("VendorCode", "Vendor Code", style: "description"),
+                        //grid.Column("PaymentReqId", ""),
+                grid.Column("PaymentReqId", header: "PR #", format: @<text><a href="/DOHPaymentPortal/Payment/PRDetails?PRRequestID=@item.PaymentReqId">@item.PaymentReqId</a></text>,canSort: true),
+                grid.Column("FMSRegistration", "FMS Registration"),
+                grid.Column("PRStatus", "PR Status"),
+                grid.Column("VendorInvoiceNumber", "Invoice Number"),
+                grid.Column("InvoiceDate", "Invoice Date",format: (item) => item.InvoiceDate != null ? item.InvoiceDate.ToString("MM/dd/yy") : "", canSort: true),
+                grid.Column("InvoiceSubmittedDate", "Invoice Submitted Date", format: (item) => item.InvoiceSubmittedDate != null ? item.InvoiceSubmittedDate.ToString("MM/dd/yy") : "", canSort: true),
+                grid.Column("ServicePeriod", "Service Period"),
+                grid.Column("InvoiceAmount", "Invoice Amount", format: (item) => new HtmlString("$" + Convert.ToString(item.InvoiceAmount)), canSort: true),
+                grid.Column(
+                    header: "",
+                    format:
+                    @<text>
+                        @if (item.PaymentReqId < 200)
+                        {
+                            @Html.ActionLink("Add Payment Request", "Add", "Payment", new { PaymentReqId = (int)item.PaymentReqId }, new { @class = "btn btn-sm btn-primary" })
+                        }
+                        else if (item.PaymentReqId > 100)
+                        {
+                            <button id="disableLinkButton" class="btn btn-sm btn-default" disabled="disabled">Add Payment Request</button><br>
+                        }
+                    </text>
+                                                                                                                      ))
+                                                                                                                      )
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")
+            </div>
+        </div>
+        <div class="col-sm-12 row-bottom-margin ">
 
 
-
-<script type="text/javascript">
-
-
-    function Search() {
-        var searchFVal = $("#txtSearchFirstName").val();
-        var searchLVal = $("#txtSearchLastName").val();
-
-        var e = document.getElementById("ddlViewBy");
-        var strUser = e.options[e.selectedIndex].value;
-
-        $.ajax({
-
-            type: "POST",
-            url: '/Home/Search',
-            data: { searchFString: searchFVal, searchLString: searchLVal, searchVcodeString: strUser, },
-            dataType: 'html',
-            success: function (data) {
-                $('#divPartialView').html(data);
-
+        </div>
+        <div class="col-sm-6">
+        </div>
+    </div>
+    @Html.Hidden("dir", grid.SortDirection)
+    @Html.Hidden("col", grid.SortColumn)
+</div>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        try {
+            var dir = $('#dir').val();
+            var col = $('#col').val();
+            var header = $("th a[href*=" + col + "]");
+            if (dir == "Ascending") {
+                header.text(header.text() + "  ▲")
+            }
+            if (dir == "Descending") {
+                header.text(header.text() + "  ▼");
             }
 
+        } catch (e) {
+
+        }
+    })
+</script>
+
+
+@*@model List<NYCPaymentPortal.Models.PaymentRequest>
+    @{
+        ViewBag.Title = "Payment Request";
+    }
+
+        <form id="gridForm">
+            <div class="row col-xs-12">
+                <div class="col-xs-6 form-group">
+                    <label for="PR">PR #</label>
+                    <input type="text" class="form-control" id="txtPRNumber" placeholder="PR Number" />
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="Vendor">Vendor Invoice #</label>
+                    <input type="text" class="form-control" id="txtVendorInvoice" placeholder="Vendor Invoice" />
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="exampleSelect1">Vendor/Code</label>
+                    <select class="form-control" id="ddlVendorCode">
+                        <option>ALL</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="exampleSelect1">PR Status</label>
+                    <select class="form-control" id="ddlPRStatus">
+                        <option>ALL</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 form-group">
+
+                    <label for="exampleInputEmail1">FMS Registration</label>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <input type="text" class="form-control" id="txtFMSContractType" width="15" placeholder="Contract Type" />
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <input type="text" class="form-control" id="txtFMSAgencyCode" width="15" placeholder="Agency Code" />
+
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <input type="text" class="form-control" id="txtFMSDocID" width="20" placeholder="Doc ID" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="Vendor">MHY Contract #</label>
+                    <input type="text" class="form-control" id="txtMHYContract" placeholder="MHY Contract" />
+
+                </div>
+                <div class="col-xs-6 form-group">
+                </div>
+                <div class="col-xs-6 form-group">
+                    <button type="submit" class="btn btn-primary" onclick="Search()">Apply</button>
+                    <button type="submit" id="GridSearchReset" class="btn btn-default">Reset</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="divPartialView">
+            @Html.Partial("~/Views/Shared/_GridPaymentRequest.cshtml", Model)
+        </div>
+    <script type="text/javascript">
+        function Search() {
+            var txtPRNumber = $("#txtPRNumber").val();
+            var txtVendorInvoice = $("#txtVendorInvoice").val();
+            var ddl1 = document.getElementById("ddlVendorCode");
+            var ddlVendorCode = ddl1.options[ddl1.selectedIndex].value;
+            var ddl2 = document.getElementById("ddlPRStatus");
+            var ddlPRStatus = ddl2.options[ddl2.selectedIndex].value;
+            var FMSRegistration = $("#txtFMSContractType").val() + $("#txtFMSAgencyCode").val() + $("#txtFMSDocID").val();
+            var txtMHYContract = $("#txtMHYContract").val();
+
+            $.ajax({
+                type: "POST",
+                url: '/Payment/PaymentGridSearch',
+                data: { txtPRNumber: txtPRNumber, txtVendorInvoice: txtVendorInvoice, ddlVendorCode: ddlVendorCode, ddlPRStatus: ddlPRStatus, FMSRegistration: FMSRegistration, txtMHYContract: txtMHYContract },
+                dataType: 'html',
+                success: function (data) {
+                    $('#divPartialView').html(data);
+                }
+            });
+
+        }
+        $('#gridForm').click(function () {
+            $('#GridSearchReset')[0].reset();
         });
 
-    }
-</script>
+    </script>*@
 

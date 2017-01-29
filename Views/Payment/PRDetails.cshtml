@@ -1,0 +1,155 @@
+﻿@*@model IEnumerable<NYCPaymentPortal.Models.Document>*@
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="more-less glyphicon glyphicon-plus"></i>
+                    <b>Purchase Order | Contract </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Vendor Name/Vendor Code:</b> ABC & Sales VC00115659
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form id="ContractForm">
+                        <div class="row col-xs-12">
+                            <div class="col-xs-6 form-group">
+                                <label for="textinput">Vendor/Code</label>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="textinput">Contrak Number #:</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("#txtInvoiceSubDateDT").datetimepicker(
+            {
+                showTodayButton: true,
+                format: 'YYYY-MM-DD HH:mm',
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top',
+                stepping: 15
+            });
+    });
+</script>
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <i class="more-less glyphicon glyphicon-plus"></i>
+                <b>Invoice / Memo</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Invoice #: </b> 89865656&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Invoice Amount:</b> $98774.55
+            </a>
+        </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+            <div class="col-md-12">
+                <form id="InvoiceForm">
+                    <div class="row col-xs-12">
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Invoice #:</label>
+                            <input type="text" id="txtInvoice" class="form-control input-sm" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Sub Invoice #:</label>
+                            <input type="text" id="txtSubInvoice" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Invoice Amount:</label>
+                            <input type="text" id="txtInvoiceAmount" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Invoice Date</label>
+                            <input type="text" id="txtInvoiceDate" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Invoice Submission Date:</label>
+                            <input type="text" id="txtInvoiceSubDate" class="form-control" />
+                            <div class="input-group" id="txtInvoiceSubDateDT">
+                                <input type="text" id="txtInvoiceSubDate" class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Service Period From:</label>
+                            <input type="text" id="txtServiceFrom" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Service Period To:</label>
+                            <input type="text" id="txtServiceTo" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Invoice Description:</label>
+                            <input type="text" id="txtInvoiceDesc" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="PaymentAddress">Payment Address:</label>
+                            <select id="PaymentAddress" name="PaymentAddress" class="form-control">
+                                <option value="1">Option one</option>
+                                <option value="2">Option two</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">Attention To:</label>
+                            <input type="text" id="txtAttentionTo" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">PR #:</label>
+                            <input type="text" id="txtPRNumber" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="textinput">PR Status:</label>
+                            <input type="text" id="txtPRStatus" class="form-control" />
+                        </div>
+                        <div class="col-xs-6 form-group"></div>
+                        <div class="col-xs-6 form-group">
+                            <button type="submit" class="btn btn-primary" onclick="Search()">Apply</button>
+                            <button type="submit" id="InvoiceReset" class="btn btn-default">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+        <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <i class="more-less glyphicon glyphicon-plus"></i>
+                <b>Documents</b>
+            </a>
+        </h4>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+            @*<div id="divPartialView">
+                @Html.Partial("~/Views/Shared/_documents.cshtml")
+            </div>*@
+        </div>
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+
+    $('#InvoiceForm').click(function () {
+        $('#InvoiceReset')[0].reset();
+    });
+</script>
+
+
+
+

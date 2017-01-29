@@ -15,10 +15,10 @@ namespace NYCPaymentPortal.Models
     public partial class PRNewRequest
     {
         public double PaymentReqId { get; set; }
-        public Nullable<double> Vendor_Code { get; set; }
-        public string FMS_Registration { get; set; }
+        public Nullable<double> VendorCode { get; set; }
+        public string FMSRegistration { get; set; }
         public string ContractPIN { get; set; }
-        public Nullable<double> MHYNumberId { get; set; }
+        public Nullable<System.DateTime> MHYNumberId { get; set; }
         public Nullable<System.DateTime> ServiceFromDate { get; set; }
         public Nullable<System.DateTime> ServiceToDate { get; set; }
     }

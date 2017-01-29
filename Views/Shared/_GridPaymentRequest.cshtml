@@ -1,70 +1,46 @@
 ﻿@model List<NYCPaymentPortal.Models.PaymentRequest>
-
-<script src="../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
-<style type="text/css">
-    .webGrid {
-        margin: 4px;
-        border-collapse: collapse;
-        width: 500px;
-        background-color: #FCFCFC;
-    }
-
-    .header {
-        background-color: #C1D4E6;
-        font-weight: bold;
-        color: #FFF;
-    }
-
-    .webGrid th, .webGrid td {
-        border: 1px solid #C0C0C0;
-        padding: 5px;
-    }
-
-    .alt {
-        background-color: #E4E9F5;
-        color: #000;
-    }
-
-    .gridHead a:hover {
-        text-decoration: underline;
-    }
-
-    .description {
-        width: auto;
-    }
-
-    .select {
-        background-color: #389DF5;
-    }
-</style>
-
+<link href="~/Css/ResponsiveWebGrid.css" rel="stylesheet" />
 @{
     var grid = new WebGrid(Model, canPage: true, rowsPerPage: 5, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
     grid.Pager(WebGridPagerModes.NextPrevious);
 }
-<div id="grid">
-    @grid.GetHtml(
 
-        tableStyle: "webGrid", mode: WebGridPagerModes.All,
-
-                firstText: "<< First",
-                previousText: "< Prev",
-                nextText: "Next >",
-                lastText: "Last >>",
+<div class="row col-xs-12">
+    <div id="grid">
+           @grid.GetHtml(
+                tableStyle: "col-md-12 table-bordered table-responsive table-condensed cf", mode: WebGridPagerModes.All,
+                         firstText: "<< First",
+                         previousText: "< Prev",
+                         nextText: "Next >",
+                         lastText: "Last >>",
                 headerStyle: "header",
                 alternatingRowStyle: "alt",
                 selectedRowStyle: "select",
                 columns: grid.Columns(
+                grid.Column("VendorCode", "Vendor Code", style: "description"),
+                //grid.Column("PaymentReqId", ""),
+                grid.Column("PaymentReqId", header: "PR #", format: @<text><a href="/DOHPaymentPortal/Payment/PRDetails?PRRequestID=@item.PaymentReqId">@item.PaymentReqId</a></text>,canSort: true),
+                grid.Column("FMSRegistration", "FMS Registration"),
+                grid.Column("PRStatus", "PR Status"),
+                grid.Column("VendorInvoiceNumber", "Invoice Number"),
+                grid.Column("InvoiceDate", "Invoice Date",format: (item) => item.InvoiceDate != null ? item.InvoiceDate.ToString("MM/dd/yy") : "", canSort: true),
+                grid.Column("InvoiceSubmittedDate", "Invoice Submitted Date", format: (item) => item.InvoiceSubmittedDate != null ? item.InvoiceSubmittedDate.ToString("MM/dd/yy") : "", canSort: true),
+                grid.Column("ServicePeriod", "Service Period"),
+                grid.Column("InvoiceAmount", "Invoice Amount", format: (item) => new HtmlString("$" + Convert.ToString(item.InvoiceAmount)), canSort: true),
+                grid.Column(
+                    header: "",
+                    format:
+                    @<text>
+                        @if (item.PaymentReqId < 200)
+                        {
+                            @Html.ActionLink("Add Payment Request", "Add", "Payment", new { PaymentReqId = (int)item.PaymentReqId }, new { @class = "btn btn-sm btn-primary" })
+                        }
+                        else if (item.PaymentReqId > 100)
+                        {
+                            <button id="disableLinkButton" class="btn btn-sm btn-default" disabled="disabled">Add Payment Request</button><br>
+                        }
+                    </text>
+                )))
 
-                grid.Column("Vendor_Code", "Vendor_Code", style: "description"),
-                grid.Column("PaymentReqId", "PaymentReqId"),
-                grid.Column("PR_Status", "PR_Status"),
-                grid.Column("PR_Status", "PR_Status"),
-                grid.Column("Vendor_Invoice__", "Vendor_Invoice__"),
-                grid.Column("Invoice_Date", "Invoice_Date"),
-                grid.Column("Invoice_Submitted_Date", "Invoice_Submitted_Date"),
-                grid.Column("Service_Period", "Service_Period"),
-                grid.Column("Invoice_Amount", "Invoice_Amount")
-         ))
-
+    </div>
 </div>

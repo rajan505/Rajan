@@ -1,0 +1,140 @@
+/*  NYC - Agencies - Header
+    ------------------
+*/
+/* line 6, header-agencies.scss */
+.main-header .agency-logo {
+height:100px;
+  }
+ 
+ .agency-logo-wrapper{  position: absolute; top:-27px; text-align:center; width:96%; z-index: 900;}
+  @media only screen and (max-width: 767px) {
+    .agency-logo-wrapper{top:0px; width:94%}
+    .main-header .agency-logo {
+        max-height:49px;
+ } }
+
+/* line 17, header-agencies.scss */
+.agency-header .upper-header-left {
+  width: 25%; }
+
+/* line 22, header-agencies.scss */
+.agency-header .small-nyc-logo {
+  height: 15px;
+  width: 40px;
+  margin: 0 10px 0 -1px; }
+
+/* line 28, header-agencies.scss */
+.agency-header .upper-header-black-title {
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 0 0 10px;
+  /* Tablet Portrait size to standard 960 (devices and browsers) */ }
+  @media only screen and (max-width: 767px) {
+    /* line 28, header-agencies.scss */
+    .agency-header .upper-header-black-title {
+      display: none; } }
+
+/* line 41, header-agencies.scss */
+.agency-header .upper-header-padding {
+  width: 50%; }
+
+/* line 45, header-agencies.scss */
+.agency-header .upper-header-right {
+  position: absolute;
+  right: 23px;
+  padding-left: 4%;
+  /* Tablet Portrait size to standard 960 (devices and browsers) */ }
+  @media only screen and (max-width: 767px) {
+    /* line 45, header-agencies.scss */
+    .agency-header .upper-header-right {
+      display: none; } }
+
+/* line 57, header-agencies.scss */
+.agency-header .upper-header-search {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 5px; }
+
+/* line 64, header-agencies.scss */
+.agency-header .upper-header-search a {
+  color: #fff; }
+
+/* line 68, header-agencies.scss */
+.agency-header .upper-header-three-one-one {
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 5px; }
+
+/* line 75, header-agencies.scss */
+.agency-header .upper-header-three-one-one a {
+  color: #fff; }
+
+/* line 79, header-agencies.scss */
+.lt-ie8 header .logo {
+  position: relative; }
+
+/* line 84, header-agencies.scss */
+.agency-header .upper-header-black {
+  background: #000;
+  height: 25px; }
+
+/* line 89, header-agencies.scss */
+.subheader, .subheader a {
+  background: #36add5;
+  color: #ffffff; }
+
+/* line 94, header-agencies.scss */
+.subheader {
+  /*min-height: 70px;*/
+  padding: 20px 0 20px 0; }
+
+/* line 99, header-agencies.scss */
+.nav-outer .global-input-search {
+  float: right; }
+
+/* line 103, header-agencies.scss */
+#nav .active {
+  background: #36add5; }
+
+/* line 107, header-agencies.scss */
+.main-header #header-links {
+  position: absolute;
+  right: 23px;
+  top: 5px; 
+  z-index: 901; }
+  @media screen and (max-width: 767px) {
+    /* line 107, header-agencies.scss */
+    .main-header #header-links {
+      left: -83%;
+      position: absolute;
+      top: 340px;
+      z-index: 9999; } }
+
+/* line 120, header-agencies.scss */
+.main-header #nav-hr {
+  top: 125px !important; }
+
+/* line 124, header-agencies.scss */
+.ie7 #global-search-form1 .field-search .input-search {
+  float: right; }
+
+/* line 128, header-agencies.scss */
+.ie7 .main-header #global-search-form1 {
+  float: right !important; }
+
+/* line 132, header-agencies.scss */
+.ie7 .main-header #global-search-form1 {
+  width: 206px !important;
+  right: 0 !important; }
+
+/* line 137, header-agencies.scss */
+.ie7 .main-header .global-input-search .field-search .input-search {
+  padding-left: 6px !important; }
+
+/* line 141, header-agencies.scss */
+.ie7 .main-header .global-input-search {
+  float: right; }
+.main-header .global-input-search{width:165px;}

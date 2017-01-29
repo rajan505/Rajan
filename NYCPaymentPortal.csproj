@@ -89,6 +89,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -151,7 +154,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="DAL\DOHMHPortalContext.cs">
       <SubType>Code</SubType>
@@ -161,8 +163,10 @@
     </Compile>
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Models\Documents.cs" />
-    <Compile Include="Models\LoginDetails.cs" />
+    <Compile Include="Models\Document.cs">
+      <DependentUpon>NYCPaymentPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentModel.cs" />
     <Compile Include="Models\NYCPaymentPortalModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -187,7 +191,7 @@
     <Compile Include="Models\PRSearch.cs">
       <DependentUpon>NYCPaymentPortalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\WebGridExtensions.cs" />
     <Compile Include="NorthWind.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -196,140 +200,57 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\bootstrap-theme.css" />
-    <Content Include="Content\css\bootstrap-theme.min.css" />
-    <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\css\dataTables\demo_page.css" />
-    <Content Include="Content\css\dataTables\demo_table.css" />
-    <Content Include="Content\css\dataTables\demo_table_jui.css" />
-    <Content Include="Content\css\images\back_disabled.jpg" />
-    <Content Include="Content\css\images\back_enabled.jpg" />
-    <Content Include="Content\css\images\details_close.png" />
-    <Content Include="Content\css\images\details_open.png" />
-    <Content Include="Content\css\images\favicon.ico" />
-    <Content Include="Content\css\images\forward_disabled.jpg" />
-    <Content Include="Content\css\images\forward_enabled.jpg" />
-    <Content Include="Content\css\images\sort_asc.png" />
-    <Content Include="Content\css\images\sort_asc_disabled.png" />
-    <Content Include="Content\css\images\sort_both.png" />
-    <Content Include="Content\css\images\sort_desc.png" />
-    <Content Include="Content\css\images\sort_desc_disabled.png" />
-    <Content Include="Content\css\justified-nav.css" />
-    <Content Include="Content\css\PagedList.css" />
-    <Content Include="Content\css\Site.css" />
-    <Content Include="Content\css\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\css\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\css\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\css\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\css\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\css\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\css\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\css\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\css\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\css\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\css\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\css\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\css\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\css\themes\base\jquery-ui.css" />
-    <Content Include="Content\css\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\css\themes\smoothness\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\css\themes\smoothness\jquery-ui-1.7.2.custom.css" />
-    <Content Include="Css\bootstrap-theme.css" />
-    <Content Include="Css\bootstrap-theme.min.css" />
-    <Content Include="Css\bootstrap.css" />
-    <Content Include="Css\bootstrap.min.css" />
-    <Content Include="Css\dataTables\demo_page.css" />
-    <Content Include="Css\dataTables\demo_table.css" />
-    <Content Include="Css\dataTables\demo_table_jui.css" />
-    <Content Include="Css\datepicker.css" />
-    <Content Include="Css\datepicker.less" />
-    <Content Include="Css\images\back_disabled.jpg" />
-    <Content Include="Css\images\back_enabled.jpg" />
-    <Content Include="Css\images\details_close.png" />
-    <Content Include="Css\images\details_open.png" />
-    <Content Include="Css\images\favicon.ico" />
-    <Content Include="Css\images\forward_disabled.jpg" />
-    <Content Include="Css\images\forward_enabled.jpg" />
-    <Content Include="Css\images\sort_asc.png" />
-    <Content Include="Css\images\sort_asc_disabled.png" />
-    <Content Include="Css\images\sort_both.png" />
-    <Content Include="Css\images\sort_desc.png" />
-    <Content Include="Css\images\sort_desc_disabled.png" />
-    <Content Include="Css\jquery.dataTables.min.css" />
+    <Content Include="Branding\bootstrapJquery\bootstrap.min.css" />
+    <Content Include="Branding\bootstrapJquery\jquery1.12.2.min.js" />
+    <Content Include="Branding\css\global.css" />
+    <Content Include="Branding\css\header-agencies.css" />
+    <Content Include="Branding\css\inside.css" />
+    <Content Include="Branding\images\bg-nav.png" />
+    <Content Include="Branding\images\controls.png" />
+    <Content Include="Branding\images\ico-close.png" />
+    <Content Include="Branding\images\language.gif" />
+    <Content Include="Branding\images\link-arrow-black-withoffset18.png" />
+    <Content Include="Branding\images\link-arrow-grey-down.png" />
+    <Content Include="Branding\images\loading.gif" />
+    <Content Include="Branding\images\logo.png" />
+    <Content Include="Branding\images\nav-sprite-mobile.png" />
+    <Content Include="Branding\images\nav-sprite.png" />
+    <Content Include="Branding\images\nyc_white%40x2.png" />
+    <Content Include="Branding\images\nyc_white.png" />
+    <Content Include="Branding\images\upper-header-divider.gif" />
+    <Content Include="Branding\js\class.js" />
+    <Content Include="Branding\js\jquery-1.9.1.js" />
+    <Content Include="Branding\js\jquery.colorbox-min.js" />
+    <Content Include="Branding\js\modernizr-2.6.2.min.js" />
+    <Content Include="Branding\js\NYC.Global.js" />
+    <Content Include="Branding\js\NYC.MainNav.js" />
+    <Content Include="Branding\js\NYC.MobileNav.js" />
+    <Content Include="Branding\js\utils.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Css\justified-nav.css" />
     <Content Include="Css\PagedList.css" />
+    <Content Include="Css\ResponsiveUserGrid.css" />
+    <Content Include="Css\ResponsiveDocumentGrid.css" />
+    <Content Include="Css\ResponsivePaymentRequestGrid.css" />
     <Content Include="Css\Site.css" />
-    <Content Include="Css\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Css\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Css\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Css\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Css\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Css\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Css\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Css\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Css\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Css\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Css\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Css\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Css\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Css\themes\base\jquery-ui.css" />
-    <Content Include="Css\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Css\themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Css\themes\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Css\themes\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Css\themes\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Css\themes\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Css\themes\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Css\themes\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Css\themes\smoothness\images\ui-icons_222222_256x240.png" />
-    <Content Include="Css\themes\smoothness\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Css\themes\smoothness\images\ui-icons_454545_256x240.png" />
-    <Content Include="Css\themes\smoothness\images\ui-icons_888888_256x240.png" />
-    <Content Include="Css\themes\smoothness\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Css\themes\smoothness\jquery-ui-1.7.2.custom.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="images\Logo.png" />
     <Content Include="images\sort_asc.png" />
     <Content Include="images\sort_both.png" />
     <Content Include="images\sort_desc.png" />
+    <Content Include="index.html" />
     <Content Include="NorthWind.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NorthWind.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Content\jquery\bootstrap-datepicker.js" />
-    <Content Include="Content\jquery\Custom.js" />
-    <Content Include="Content\jquery\jquery-1.10.2.min.map" />
     <Content Include="Mvc.sitemap">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\css\bootstrap-theme.css.map" />
-    <Content Include="Content\css\bootstrap-theme.min.css.map" />
-    <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Content\css\bootstrap.min.css.map" />
-    <Content Include="Content\css\images\Sorting icons.psd" />
-    <Content Include="Css\bootstrap-theme.css.map" />
-    <Content Include="Css\bootstrap-theme.min.css.map" />
-    <Content Include="Css\bootstrap.css.map" />
-    <Content Include="Css\bootstrap.min.css.map" />
-    <Content Include="Css\images\Sorting icons.psd" />
     <EntityDeploy Include="Models\NYCPaymentPortalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NYCPaymentPortalModel.Designer.cs</LastGenOutput>
@@ -347,58 +268,32 @@
       <DependentUpon>NYCPaymentPortalModel.edmx</DependentUpon>
       <LastGenOutput>NYCPaymentPortalModel.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Content\jquery\jquery-3.1.0.intellisense.js" />
-    <Content Include="Content\jquery\bootstrap.js" />
-    <Content Include="Content\jquery\bootstrap.min.js" />
-    <None Include="Content\jquery\jquery-1.10.2.intellisense.js" />
-    <Content Include="Content\jquery\jquery-1.10.2.js" />
-    <Content Include="Content\jquery\jquery-1.10.2.min.js" />
-    <Content Include="Content\jquery\jquery-1.11.3.min.js" />
-    <Content Include="Content\jquery\jquery-1.4.4.min.js" />
-    <Content Include="Content\jquery\jquery-3.1.0.js" />
-    <Content Include="Content\jquery\jquery-3.1.0.min.js" />
-    <Content Include="Content\jquery\jquery-3.1.0.slim.js" />
-    <Content Include="Content\jquery\jquery-3.1.0.slim.min.js" />
-    <None Include="Content\jquery\jquery.validate-vsdoc.js" />
-    <Content Include="Content\jquery\jquery.dataTables.js" />
-    <Content Include="Content\jquery\jquery.dataTables.min.js" />
-    <Content Include="Content\jquery\jquery.validate.js" />
-    <Content Include="Content\jquery\jquery.validate.min.js" />
-    <Content Include="Content\jquery\jquery.validate.unobtrusive.js" />
-    <Content Include="Content\jquery\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Content\jquery\modernizr-2.8.3.js" />
-    <Content Include="Content\jquery\respond.js" />
-    <Content Include="Content\jquery\respond.matchmedia.addListener.js" />
-    <Content Include="Content\jquery\respond.matchmedia.addListener.min.js" />
-    <Content Include="Content\jquery\respond.min.js" />
-    <Content Include="Content\jquery\_references.js" />
-    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom.js" />
-    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
-    <Content Include="Scripts\jquery.dataTables.js" />
-    <Content Include="Scripts\jquery.dataTables.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -417,11 +312,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\class.cshtml" />
-    <Content Include="Views\Employee\Insert.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Home\EmployeeInfo.cshtml" />
-    <Content Include="Views\Home\ServerSide.cshtml" />
-    <Content Include="Views\Employee\AddRequest.cshtml" />
     <Content Include="Views\Employee\AddPaymenentRequest.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
@@ -431,16 +323,15 @@
     <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
-    <Content Include="Views\Employee\Login.cshtml" />
-    <Content Include="Views\Payment\Create.cshtml" />
-    <Content Include="Views\Payment\Delete.cshtml" />
-    <Content Include="Views\Payment\Details.cshtml" />
-    <Content Include="Views\Payment\Edit.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Payment\_PeopleResults.cshtml" />
     <Content Include="Views\Shared\_GridPaymentRequest.cshtml" />
     <Content Include="Views\Payment\PaymentRequest.cshtml" />
+    <Content Include="Views\Payment\PRDetails.cshtml" />
+    <Content Include="Views\Shared\_documents.cshtml" />
+    <Content Include="Views\Payment\VendorSelection.cshtml" />
+    <Content Include="Views\Payment\Admin.cshtml" />
+    <Content Include="Views\Payment\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -448,8 +339,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Content\jquery\jquery-3.1.0.slim.min.map" />
-    <Content Include="Content\jquery\jquery-3.1.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

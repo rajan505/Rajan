@@ -4,10 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="aa297746a62243e49f5ca1ddeedfa3b4" Name="Diagram1">
+      <Diagram DiagramId="7667664e8cec4d30bdcc9f5dedc23814" Name="Diagram1">
+        <EntityTypeShape EntityType="NorthwindModel.PaymentRequest" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NorthwindModel.PRNewRequest" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NorthwindModel.PRSearch" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NorthwindModel.PaymentRequest" Width="1.5" PointX="0.5" PointY="1" />
+        <EntityTypeShape EntityType="NorthwindModel.Document" Width="1.5" PointX="9.375" PointY="2.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

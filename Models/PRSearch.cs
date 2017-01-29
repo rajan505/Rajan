@@ -14,16 +14,15 @@ namespace NYCPaymentPortal.Models
     
     public partial class PRSearch
     {
+        public Nullable<double> VendorCode { get; set; }
         public double PaymentReqId { get; set; }
-        public Nullable<double> Vendor_Code { get; set; }
-        public Nullable<double> PaymentReqId1 { get; set; }
-        public Nullable<double> PR_Status { get; set; }
-        public string FMS_Registration { get; set; }
+        public string PRStatus { get; set; }
+        public string FMSRegistration { get; set; }
         public string ContractPIN { get; set; }
-        public Nullable<double> Vendor_Invoice__ { get; set; }
-        public Nullable<double> Invoice_Amount { get; set; }
-        public Nullable<System.DateTime> Invoice_Date { get; set; }
-        public Nullable<System.DateTime> Invoice_Submission_Date { get; set; }
+        public Nullable<System.DateTime> VendorInvoiceNumber { get; set; }
+        public Nullable<System.DateTime> InvoiceAmount { get; set; }
+        public Nullable<System.DateTime> InvoiceDate { get; set; }
+        public Nullable<System.DateTime> InvoiceSubmissionDate { get; set; }
         public Nullable<System.DateTime> ServiceFromDate { get; set; }
         public Nullable<double> MHYNumberId { get; set; }
     }

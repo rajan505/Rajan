@@ -1,0 +1,101 @@
+﻿<link href="~/Css/ResponsiveUserGrid.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Users";
+}
+<div class="row well">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>User Contact Information </h4>
+        </div>
+        <div class="col-sm-6">
+            <h4>Administrator Contact Information (CI)</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h5>To update your contact information, please notify your Vendor Account Administrator</h5>
+        </div>
+        <div class="col-sm-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-horizontal">
+                <dl class="dl-horizontal">
+                    <dt>User Name:</dt>
+                    <dd>@ViewBag.CurrentUserContact.username</dd>
+                    <dt>Contact Number:</dt>
+                    <dd>@ViewBag.CurrentUserContact.contactNumber</dd>
+                    <dt>Email:</dt>
+                    <dd>@ViewBag.CurrentUserContact.email</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-horizontal">
+                @foreach (var item in ViewBag.AdminContactList)
+                    {
+                    <dl class="dl-horizontal">
+                        <dt>Administrato Name:</dt>
+                        <dd>@item.username</dd>
+                        <dt>Contact Number:</dt>
+                        <dd>@item.contactNumber</dd>
+                        <dt>Email:</dt>
+                        <dd>@item.email</dd>
+                    </dl>
+                    }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row well">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>User Roles and Statuses</h4>
+        </div>
+    </div>
+    <div class="row">
+        @*@using (Html.BeginForm("Users", "Payment", FormMethod.Get))
+        {
+            <div class="row col-xs-6">
+                <div class="col-xs-4 col-sm-4">
+                    <label for="Rows" class="input-small" style="width:auto">Rows Per Page </label>
+                </div>
+                <div class="col-xs-4 col-sm-4">
+                    <select name="GridpageSize" class="input-small form-control" style="width:auto" onchange="this.form.submit();">
+                        <option value="Select">Select</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                    </select>
+                </div>
+            </div>
+        }*@
+        @{
+            var gridUser = new WebGrid(canPage: true, rowsPerPage: 5, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "gridUser");
+            gridUser.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+        }
+        <div class="col-xs-12 col-sm-12">
+            @gridUser.Table(
+                         tableStyle: "col-md-12 table-bordered table-responsive table-condensed",
+
+                columns: gridUser.Columns(
+                        gridUser.Column("VendorName", "Vendor Name"),
+                        gridUser.Column("VendorCode", "Vendor Code"),
+                        gridUser.Column("role", "My Role"),
+                        gridUser.Column("status", "Status")
+                ))
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            @gridUser.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")
+        </div>
+    </div>
+</div>
+@Html.Hidden("dir", gridUser.SortDirection)
+@Html.Hidden("col", gridUser.SortColumn)
+

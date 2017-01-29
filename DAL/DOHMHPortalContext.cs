@@ -13,7 +13,7 @@ namespace NYCPaymentPortal.Models
         //public DbSet<Customer> Customers { get; set; }
 
         public DbSet<PaymentRequest> PaymentRequests { get; set; }
-        public DbSet<PRNewRequest> PRNewRequests { get; set; }
+        //public DbSet<PRNewRequest> PRNewRequests { get; set; }
         public DbSet<PRSearch> PRSearchs { get; set; }
         
         

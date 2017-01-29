@@ -1,0 +1,29 @@
+﻿@media screen and (max-width: 600px)
+{
+    .nav li { float: left }
+    table, tbody, td, tr { display: block; border: none;}
+    .table-bordered > tbody > tr> td { border: none;}
+   tr { border-bottom: 1px solid #777}
+
+    thead, th { display: none }
+
+    table td:before {
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+        border: none;
+    }
+ td:nth-of-type(1):before { width: 200px; content: "VendorCode";}
+ td:nth-of-type(2):before { width: 200px; content: "PaymentReqId"; }
+ td:nth-of-type(3):before { width: 200px; content: "FMSRegistration"; }
+ td:nth-of-type(4):before { width: 200px; content: "PRStatus"; }
+ td:nth-of-type(5):before { width: 200px; content: "VendorInvoiceNumber"; }
+ td:nth-of-type(6):before { width: 200px; content: "InvoiceDate"; }
+ td:nth-of-type(7):before { width: 200px; content: "InvoiceSubmittedDate"; }
+ td:nth-of-type(8):before { width: 200px; content: "ServicePeriod"; }
+ td:nth-of-type(9):before { width: 200px; content: "InvoiceAmount"; }
+}
+
+.table-condensed{
+  font-size: medium;
+}

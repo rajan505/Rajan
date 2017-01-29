@@ -1,0 +1,25 @@
+﻿@media screen and (max-width: 600px)
+{
+    .nav li { float: left }
+    table, tbody, td, tr { display: block; border: none;}
+    .table-bordered > tbody > tr> td { border: none;}
+   tr { border-bottom: 1px solid #777}
+
+    thead, th { display: none }
+
+    table td:before {
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+        border: none;
+    }
+
+ td:nth-of-type(1):before { width: 200px; content: "VendorName";}
+ td:nth-of-type(2):before { width: 200px; content: "VendorCode"; }
+ td:nth-of-type(3):before { width: 200px; content: "role"; }
+ td:nth-of-type(4):before { width: 200px; content: "status"; }
+ 
+ .table-condensed{
+  font-size: medium;
+   }
+ }

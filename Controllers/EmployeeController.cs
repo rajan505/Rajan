@@ -10,32 +10,6 @@ namespace NYCPaymentPortal.Controllers
 {
     public class EmployeeController : Controller
     {
-
-       
-        [HttpGet]
-        public ActionResult Login()
-        {
-            var model = new LoginDetails();
-            return View(model);
-        }
-        // Post method
-        [HttpPost]
-        public ActionResult Login(LoginDetails model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Authenticate user, pass values to db
-                if (model.EmailAddress == "rajan")
-                {
-
-                }
-                else
-                { 
-                   
-                }
-            }
-            return View(model);
-        }
         public ActionResult Index()
         {
             return View();

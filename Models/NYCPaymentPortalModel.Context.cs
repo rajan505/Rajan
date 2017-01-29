@@ -25,8 +25,9 @@ namespace NYCPaymentPortal.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<PaymentRequest> PaymentRequests { get; set; }
         public virtual DbSet<PRNewRequest> PRNewRequests { get; set; }
         public virtual DbSet<PRSearch> PRSearches { get; set; }
-        public virtual DbSet<PaymentRequest> PaymentRequests { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
     }
 }

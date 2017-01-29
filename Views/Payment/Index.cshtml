@@ -1,376 +1,44 @@
-﻿@model IEnumerable<JQueryDataTables.Models.Document>
-
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <i class="more-less glyphicon glyphicon-plus"></i>
-                    <b>Invoice / Memo</b> Invoice #:  89865656 Invoice Amount : $98774.55
-                </a>
-            </h4>
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+            <p>
+                PATS Maintenance Today at 12:00pm<br />
+                PATS will be unavailable today between 12:00pm - 1:00pm for system maintenance and upgrades. Please plan accordingly prior to the downtime. For PATS Application related questions, please feel free to contact the DOHMH/IT Service Request Center
+                <br /><br /><br />
+                Scheduled Maintenance for the FMS Application portal & FISA password Self Service on 3/4 - 3/6<br />
+                Please be advised that due to a major system upgrade, the FMS Application portal will not be available on Friday March 4, 2016 and will remain offline for the entire weekend.
+                the scheduled downtime, the FISA Password Self-Service utility tool will not be available for self-service password resets on the
+            </p>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice #:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoice" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Sub Invoice #:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtSubInvoice" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice Amount:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoiceAmount" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice Date</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoiceDate" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice Submission Date:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoiceSubDate" class="form-control input-md" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Service Period From:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtServiceFrom" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Service Period To:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtServiceTo" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice Description:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoiceDesc" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="PaymentAddress">Payment Address:</label>
-                                <div class="col-md-6">
-                                    <select id="PaymentAddress" name="PaymentAddress" class="form-control">
-                                        <option value="1">Option one</option>
-                                        <option value="2">Option two</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Attention To:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtAttentionTo" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">PR #:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtPRNumber" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">PR Status:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtPRStatus" class="form-control input-md" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="col-md-6 pull-right">
-                                    <input name="submit" type="submit" id="submit" class="btn btn-primary" value="Save" />
-                                    <input name="process" type="submit" id="process" class="btn btn-inverse" value="Process" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-3">
+            <h3>@Html.ActionLink("USER", "Index", "Home")</h3>
+            <p>View User/Administrator<br />Contact Information; User<br />Roles and Status </p>
+            <br />
+            <h3>@Html.ActionLink("ADMIN", "Index", "Home")</h3>
+            <p>View Administrator/Vendor<br />Information; Maintain<br />Users Statuses and Roles </p>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTwo">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <i class="more-less glyphicon glyphicon-plus"></i>
-                    <b>Purchase Order</b>  Vendor Name/Vendor Code:
-                </a>
-            </h4>
+    <div class="row">
+        <div class="col-md-3">
+            <h3>@Html.ActionLink("SEARCH", "Index", "Home")</h3>
+            <p>Search for Pending<br />Payment Requests,<br />Invoices</p>
         </div>
-        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div class="panel-body">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice #:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoice" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Sub Invoice #:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtSubInvoice" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice Amount:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoiceAmount" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice Date</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoiceDate" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice Submission Date:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoiceSubDate" class="form-control input-md" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Service Period From:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtServiceFrom" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Service Period To:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtServiceTo" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Invoice Description:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtInvoiceDesc" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="PaymentAddress">Payment Address:</label>
-                                <div class="col-md-6">
-                                    <select id="PaymentAddress" name="PaymentAddress" class="form-control">
-                                        <option value="1">Option one</option>
-                                        <option value="2">Option two</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Attention To:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtAttentionTo" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">PR #:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtPRNumber" class="form-control input-md" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">PR Status:</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="txtPRStatus" class="form-control input-md" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="col-md-6 pull-right">
-                                    <input name="submit" type="submit" id="submit" class="btn btn-primary" value="Save" />
-                                    <input name="process" type="submit" id="process" class="btn btn-inverse" value="Process" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-3">
+            <h3>@Html.ActionLink("ADD REQUEST", "Index", "Home")</h3>
+            <p>
+                Create / View<br />Payment Requests and<br />Contracts
+            </p>
+        </div>
+        <div class="col-md-3">
+            <h3>@Html.ActionLink("REPORTS", "Index", "Home")</h3>
+            <p>Payment Requests Details</p>
+        </div>
+        <div class="col-md-3">
+            <h3>@Html.ActionLink("HELP?", "Index", "Home")</h3>
+            <p>User Guide for<br />DOHMH Vendors</p>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingThree">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class="more-less glyphicon glyphicon-plus"></i>
-                    <b>Documents</b>
-                </a>
-            </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-            <div class="panel-body">
-                <div class="col-md-12">
-
-                    <div id="grid">
-                        @{
-                            var category = Model.Select(app => app.CategoryList);
-                            var category1 = from name in category.First()
-                                            select new SelectListItem
-                                            {
-                                                Value = name,
-                                                Text = name
-                                            };
-                            var gridview = new WebGrid(source: Model, rowsPerPage: 5);
-                        }
-                        @gridview.GetHtml(tableStyle: "table table-hover table-condensed table-bordered",
-                            columns:
-
-                            gridview.Columns(
-                                gridview.Column("", style: "button",
-                                format:
-                        @<text>
-                            <button class="edit-case read btn btn-default" id="@item.ID">Edit</button>
-                            <button class="delete-case read btn btn-default" id="@item.ID">Delete</button>
-                            <button class="update-case edit btn btn-default" id="@item.ID">Update</button>
-                            <button class="cancel-case edit btn btn-default" id="@item.ID">Cancel</button>
-                        </text>),
-                                        gridview.Column("Category", canSort: false,
-                                format:
-                        @<text>
-                            <span id="category" class="read">@item.Category</span>
-                            @Html.DropDownList("Category", category1, new { @class = "edit" })
-                        </text>),
-
-                                                    gridview.Column("Description"),
-                                                    gridview.Column("UploadDate"),
-                                                    gridview.Column("ModifiedDate"),
-                                                    gridview.Column("FileName",
-                                format:
-                        @<text>
-                            <span id="fileName" class="read">@item.FileName</span>
-                            @Html.TextBox("FileName", (string)item.FileName, new { @class = "edit" })
-                        </text>)
-                                                                                                                                                                                                                                                                                                                                                                                  ))
-                        <table class="table table-hover table-condensed table-bordered">
-                            <tr>
-                                <th colspan="2"><input class="btn btn-default" type="button" id="btnAddDocument" value="Add" /></th>
-                                <th>
-                                    <select id="ddlDocumentCategory" name="selectbasic" class="form-control">
-                                        <option value="Invoice">Invoice</option>
-                                        <option value="Payment Authorization Memo">Payment Authorization Memo</option>
-                                        <option value="Receiving Report">Receiving Report</option>
-                                        <option value="Inspection Report">Inspection Report</option>
-                                        <option value="Email">Email</option>
-                                        <option value="Timesheets">Timesheets</option>
-                                        <option value="Receipts">Receipts</option>
-                                        <option value="Supporting Documetation">Supporting Documetation</option>
-                                        <option value="Other ">Other </option>
-                                    </select>
-                                </th>
-                                <th><input type="text" id="txtDescription" /></th>
-                                <th><input type="text" id="txtUploadDate" /></th>
-                                <th><input type="text" id="txtModifiedDate" /></th>
-                                <th><input id="filebutton" name="filebutton" class="input-file" type="file"></th>
-                            </tr>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingFour">
-            <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    <i class="more-less glyphicon glyphicon-plus"></i>
-                    <b>Documents Ajax Call</b>
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-            <div class="panel-body">
-                <h2>Search</h2>
-
-                @using (Ajax.BeginForm("Update", "Payment", new AjaxOptions
-                {
-                    HttpMethod = "GET",
-                    InsertionMode = InsertionMode.Replace,
-                    UpdateTargetId = "searchResults"
-                }))
-                {
-                    @Html.DropDownList("categorie", new SelectList(new[] { "LastName", "FirstName",
-                                "ID"}) as SelectList)
-                    @Html.TextBox("query")
-                    <input type="submit" value="Search" />
-                }
-                <br /><br />
-
-                <table id="searchResults"></table>
-            </div>
-        </div>
-
-    </div>
-</div><!-- panel-group -->
-@*<div class="row">
-        <div class="col-md-2">
-            <b>Document Category</b>
-            <select id="selectbasic" name="selectbasic" class="form-control">
-                <option value="Invoice">Invoice</option>
-                <option value="Payment Authorization Memo">Payment Authorization Memo</option>
-                <option value="Receiving Report">Receiving Report</option>
-                <option value="Inspection Report">Inspection Report</option>
-                <option value="Email">Email</option>
-                <option value="Timesheets">Timesheets</option>
-                <option value="Receipts">Receipts</option>
-                <option value="Supporting Documetation">Supporting Documetation</option>
-                <option value="Other ">Other </option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <b>Document File Name</b>
-            <input id="filebutton" name="filebutton" class="input-file" type="file">
-        </div>
-        <div class="col-md-2">
-            <b>Document Description</b>
-            <input id="PRStatus" name="PRStatus" type="text" class="form-control input-md">
-        </div>
-        <div class="col-md-2">
-            <b>Date Uploaded</b>
-
-        </div>
-        <div class="col-md-2">
-            <b>Date Modified</b>
-
-        </div>
-        <div class="col-md-2">
-            <b>Date Uploaded</b>
-            <button id="btnDocDelete" name="btnDocDelete" class="btn btn-primary">Delete</button>
-        </div>
-    </div>*@
-
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-
-<script src="~/Scripts/Custom.js"></script>
-
-
+</div>
